@@ -4,9 +4,9 @@ import { IoSearch } from "react-icons/io5";
 import { GoHeartFill } from "react-icons/go";
 import { HiShoppingBag } from "react-icons/hi2";
 
-const Navbar = (handleScroll) => {
+const Navbar = ({ handleScroll, setSearchTerm , isScrolled }) => {
   return (
-    <header className="bg-red-200 fixed top-0 left-0 right-0">
+    <header className={`bg-red-200 fixed top-0 left-0 right-0 ${isScrolled ? 'shadow-lg' : ''}`}>
       <nav className="max-w-325 px-12  mx-auto h-[14vh] flex items-center justify-between">
         {/* logo */}
         <a href="#" className="flex w-15 h-15 bg-zinc-100 rouded-full p-2">
@@ -25,6 +25,7 @@ const Navbar = (handleScroll) => {
               autoComplete="off"
               className="h-[5vh] pl-4 flex-1 focus:outline-none"
               onFocus={handleScroll}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
 
             <button className="flex justify-center items-center w-10 h-10 rounded-full bg-blue-600 text-white text-xl">

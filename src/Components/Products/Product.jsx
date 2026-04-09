@@ -14,6 +14,7 @@ const Product = () => {
   ];
 
   const [activeTab, setActiveTab] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredItems = ProductList.filter((item) => {
     const matchesCategory =
@@ -22,13 +23,15 @@ const Product = () => {
       (activeTab === "On Sale" && item.onSale) ||
       activeTab === item.category;
 
-    return matchesCategory;
+      const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return matchesCategory && matchesSearch;
   });
 
   const renderProducts = filteredItems.map((product) => {
     return (
       // card
-      <div className="bg-zinc-100 p-5 border-2 border-zinc-300 rounded-lg ">
+      <div  key={product.id}  className="bg-zinc-100 p-5 border-2 border-zinc-300 rounded-lg ">
         <div className=" flex justify-between items-center">
           <button className="text-3xl text-zinc-300 ">
             <GoHeartFill />
@@ -91,7 +94,13 @@ const Product = () => {
       </div>
 
       {/* Product Listing  */}
-      <div className="grid grid-cols-4 gap-9 mt-12">{renderProducts}</div>
+      <div className="grid grid-cols-4 gap-9 mt-12">
+        {
+          filteredItems.length === 0?
+          <p className="text-center col-span-4 text-zinc-800 text-lg ">No product found</p> :
+          renderProducts
+        }
+      </div>
     </section>
   );
 };
