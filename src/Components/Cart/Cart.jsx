@@ -4,9 +4,10 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 
 
 
-const Cart = () => {
+const Cart = ({activePanel}) => {
   return (
-    <div className='flex flex-col justify-between gap-5 bg-zinc-100 fixed top-0 right-0 bottom-0 z-40 left-auto w-100 border-2 border-zinc-300 py-7 transform translate-x-full'>
+    <div className={`flex flex-col justify-between gap-5 bg-zinc-100 fixed top-0 right-0 bottom-0 z-40 left-auto w-100 border-2 border-zinc-300 py-7 transform transition-transform duration-300 
+    ${activePanel === 'cart' ? 'translate-x-0' : 'translate-x-full'}`}>
 
         {/* Heading  */}
         <div className='px-10'>
