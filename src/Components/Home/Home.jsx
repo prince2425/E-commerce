@@ -11,6 +11,7 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activePanel, setActivePanel] = useState(null);
   const [orderSummary, setOrderSummary] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
   const [cart, setCart] = useState([]);
 
   // Total Calculations
@@ -126,6 +127,18 @@ const Home = () => {
           subtotal={subtotal}
           shippingFee={shippingFee}
           orderTotal={orderTotal}
+          setOrderSummary={setOrderSummary}
+          setOrderPlaced={setOrderPlaced}
+          setCart={setCart}
+        />
+      }
+
+
+      {/* OrderPlaced  */}
+      {
+        orderPlaced && 
+        <orderPlaced 
+        setOrderPlaced={setOrderPlaced}
         />
       }
     </div>
